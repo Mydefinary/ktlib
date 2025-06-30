@@ -44,7 +44,7 @@ public class PointsListViewHandler {
         try {
             if (!boughtPoints.validate()) return;
             // view 객체 조회
-            Optional<PointsList> pointsListOptional = pointsListRepository.findByPointId(
+            Optional<PointsList> pointsListOptional = pointsListRepository.findFirstByPointId(
                 boughtPoints.getPointId()
             );
 
@@ -70,7 +70,7 @@ public class PointsListViewHandler {
         try {
             if (!decreasedPoints.validate()) return;
             // view 객체 조회
-            Optional<PointsList> pointsListOptional = pointsListRepository.findByPointId(
+            Optional<PointsList> pointsListOptional = pointsListRepository.findFirstByPointId(
                 decreasedPoints.getPointId()
             );
 
@@ -96,7 +96,7 @@ public class PointsListViewHandler {
         try {
             if (!notDecreasedPoints.validate()) return;
             // view 객체 조회
-            Optional<PointsList> pointsListOptional = pointsListRepository.findByPointId(
+            Optional<PointsList> pointsListOptional = pointsListRepository.findFirstByPointId(
                 notDecreasedPoints.getPointId()
             );
 

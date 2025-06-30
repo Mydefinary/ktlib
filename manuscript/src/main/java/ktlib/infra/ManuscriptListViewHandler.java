@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
+import java.text.SimpleDateFormat;
 
 @Service
 public class ManuscriptListViewHandler {
@@ -31,13 +32,16 @@ public class ManuscriptListViewHandler {
             manuscriptList.setTitle(resisteredText.getTitle());
             manuscriptList.setContent(resisteredText.getContent());
             manuscriptList.setCreatedDate(
-                String.valueOf(resisteredText.getCreatedDate())
+                // String.valueOf(resisteredText.getCreatedDate()) 수
+                resisteredText.getCreatedDate()
             );
             manuscriptList.setLastModified(
-                String.valueOf(resisteredText.getLastModified())
+                // String.valueOf(resisteredText.getLastModified() 수정
+                resisteredText.getLastModified()    
             );
             manuscriptList.setAuthorId(
-                String.valueOf(resisteredText.getAuthorId())
+                // String.valueOf(resisteredText.getAuthorId()) 수정
+                resisteredText.getAuthorId()
             );
             manuscriptList.setStatus(resisteredText.getStatus());
             // view 레파지 토리에 save
@@ -54,7 +58,7 @@ public class ManuscriptListViewHandler {
         try {
             if (!requestedPublish.validate()) return;
             // view 객체 조회
-            Optional<ManuscriptList> manuscriptListOptional = manuscriptListRepository.findByManuscriptId(
+            Optional<ManuscriptList> manuscriptListOptional = manuscriptListRepository.findFirstByManuscriptId( // findByManuscriptId -> findFirstByManuscriptId
                 requestedPublish.getManuscriptId()
             );
 
@@ -80,7 +84,7 @@ public class ManuscriptListViewHandler {
         try {
             if (!updatedText1.validate()) return;
             // view 객체 조회
-            Optional<ManuscriptList> manuscriptListOptional = manuscriptListRepository.findByManuscriptId(
+            Optional<ManuscriptList> manuscriptListOptional = manuscriptListRepository.findFirstByManuscriptId(  // findByManuscriptId -> findFirstByManuscriptId
                 updatedText1.getManuscriptId()
             );
 
