@@ -55,7 +55,7 @@ public class BookListViewHandler {
                 bookList.setSummary(preparedPublish.getSummary());
                 bookList.setCoverUrl(preparedPublish.getCoverUrl());
                 bookList.setPublicationDate(
-                    String.valueOf(preparedPublish.getRequestDate())
+                    preparedPublish.getPublicationDate()
                 );
                 bookList.setPublicationId(preparedPublish.getPublicationId());
                 bookList.setGenre(preparedPublish.getGenre());
