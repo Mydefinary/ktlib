@@ -1,10 +1,9 @@
 package ktlib.domain;
 
-import java.time.LocalDate;
-import java.util.*;
-import ktlib.domain.*;
+import java.util.Date;
 import ktlib.infra.AbstractEvent;
-import lombok.*;
+import lombok.Data;
+import lombok.ToString;
 
 //<<< DDD / Domain Event
 @Data
@@ -24,4 +23,3 @@ public class DecreasedPoints extends AbstractEvent {
         super();
     }
 }
-//>>> DDD / Domain Event

@@ -1,12 +1,10 @@
 package ktlib.domain;
 
-import java.time.LocalDate;
-import java.util.*;
-import ktlib.domain.*;
+import java.util.Date;
 import ktlib.infra.AbstractEvent;
-import lombok.*;
+import lombok.Data;
+import lombok.ToString;
 
-//<<< DDD / Domain Event
 @Data
 @ToString
 public class RegisteredPoints extends AbstractEvent {
@@ -19,10 +17,15 @@ public class RegisteredPoints extends AbstractEvent {
 
     public RegisteredPoints(Point aggregate) {
         super(aggregate);
+        this.pointId = aggregate.getPointId();
+        this.userId = aggregate.getUserId();
+        this.pointBalance = aggregate.getPointBalance();
+        this.pointRechargeDate = aggregate.getPointRechargeDate();
+        this.pointSpendDate = aggregate.getPointSpendDate();
     }
 
     public RegisteredPoints() {
         super();
     }
 }
-//>>> DDD / Domain Event
+

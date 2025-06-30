@@ -12,6 +12,12 @@ import ktlib.domain.BoughtPoints;
 import ktlib.domain.DecreasedPoints;
 import ktlib.domain.NotDecreasedPoints;
 import ktlib.domain.RegisteredPoints;
+import ktlib.domain.BookSubscribed;
+import ktlib.domain.DecreasedPoints;
+import ktlib.domain.NotDecreasedPoints;
+import org.springframework.context.ApplicationContext;
+import java.util.Optional;
+
 import lombok.Data;
 
 @Entity
