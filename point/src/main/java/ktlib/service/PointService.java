@@ -36,9 +36,14 @@ public class PointService {
                 DecreasedPoints decreased = new DecreasedPoints(point);
                 decreased.publishAfterCommit();
             } else {
-                NotDecreasedPoints notDec = new NotDecreasedPoints(point);
+                NotDecreasedPoints notDec = new NotDecreasedPoints(point, "포인트 부족");
                 notDec.publishAfterCommit();
             }
+        } else {
+            NotDecreasedPoints notDec = new NotDecreasedPoints();
+            notDec.setUserId(userId);
+            notDec.setFailReason("사용자 포인트 정보 없음");
+            notDec.publishAfterCommit();
         }
     }
 }
