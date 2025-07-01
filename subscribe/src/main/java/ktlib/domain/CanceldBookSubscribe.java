@@ -18,11 +18,6 @@ public class CanceldBookSubscribe extends AbstractEvent {
     private Date expriedAt;
     private Date paymentAt;
     private Boolean paymentSuccess;
-<<<<<<< HEAD
-
-    public CanceldBookSubscribe(SubscribeSu aggregate) {
-        super(aggregate);
-=======
     private String reason;
 
     public CanceldBookSubscribe(SubscribeSu aggregate) {
@@ -34,7 +29,6 @@ public class CanceldBookSubscribe extends AbstractEvent {
         this.expiredAt = aggregate.getExpiredAt();
         this.paymentAt = aggregate.getPaymentAt();
         this.paymentSuccess = aggregate.getPaymentSuccess();
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
     }
 
     public CanceldBookSubscribe() {

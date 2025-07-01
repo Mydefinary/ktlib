@@ -56,9 +56,9 @@ spring:
 
 ---
 
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          # Secret 기반 JWT 인증을 적용하려면 JwtAuthConfig로 전환 필요
+# spring:
+#   security:
+#     oauth2:
+#       resourceserver:
+#         jwt:
+#           # Secret 기반 JWT 인증을 적용하려면 JwtAuthConfig로 전환 필요
