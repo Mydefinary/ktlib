@@ -45,12 +45,15 @@ public class Author {
 
     @PostUpdate
     public void onPostUpdate() {
-        AuthorApproved authorApproved = new AuthorApproved(this);
-        authorApproved.publishAfterCommit();
-
-        AuthorRejected authorRejected = new AuthorRejected(this);
-        authorRejected.publishAfterCommit();
+        if ("Approved".equals(this.status)) {
+            new AuthorApproved(this).publishAfterCommit();
+        }
+        if ("Rejected".equals(this.status)) {
+            new AuthorRejected(this).publishAfterCommit();
+        }
     }
+
+
 
     public static AuthorRepository repository() {
         AuthorRepository authorRepository = AuthorApplication.applicationContext.getBean(
