@@ -99,32 +99,25 @@ public class Book {
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void giveBestseller(BookSubscribed bookSubscribed) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Book book = new Book();
-        repository().save(book);
-
-        GivenBestseller givenBestseller = new GivenBestseller(book);
-        givenBestseller.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
         
+        repository().findById(bookSubscribed.getBookId()).ifPresent(book -> {
 
-        repository().findById(bookSubscribed.get???()).ifPresent(book->{
-            
-            book // do something
+            Long current = book.getNumberOfSubscribers();
+            if (current == null) current = 0L;
+            book.setNumberOfSubscribers(current + 1);
+
+            if (book.getNumberOfSubscribers() >= 5 && !"Bestseller".equals(book.getStatus())) {
+                book.setStatus("Bestseller");
+
+                GivenBestseller event = new GivenBestseller(book);
+                event.setBookId(book.getBookId());
+                event.setAuthorId(book.getAuthorId());
+                event.setNumberOfSubscribers(book.getNumberOfSubscribers());
+                event.setPublicationId(book.getPublicationId());
+                event.publishAfterCommit();
+            }
+
             repository().save(book);
-
-            GivenBestseller givenBestseller = new GivenBestseller(book);
-            givenBestseller.publishAfterCommit();
-
-         });
-        */
-
+        });
     }
-    //>>> Clean Arch / Port Method
-
 }
-//>>> DDD / Aggregate Root
