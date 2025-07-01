@@ -39,8 +39,6 @@ public class PolicyHandler {
         // Sample Logic //
 
     }
-<<<<<<< HEAD
-=======
 
     // 기존에 이벤트 스토밍에서 넣지 않은 스티커 추가 
     // (포인트 등록됨 -> 유저정보에 point 등록 Policy)
@@ -59,6 +57,5 @@ public class PolicyHandler {
         });
     }
 
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 }
 //>>> Clean Arch / Inbound Adaptor
