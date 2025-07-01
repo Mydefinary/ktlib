@@ -47,13 +47,13 @@ logging:
   level:
     org.hibernate.type: trace
     org.springframework.cloud: debug
- 
- 
+
+
 server:
   port: 8084
- 
+
 ---
- 
+
 spring:
   profiles: docker
   jpa:
@@ -83,3 +83,5 @@ spring:
         event-out:
           destination: ktlib
           contentType: application/json
+
+

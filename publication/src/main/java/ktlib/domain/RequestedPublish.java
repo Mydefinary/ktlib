@@ -22,3 +22,5 @@ public class RequestedPublish extends AbstractEvent {
                content != null && !content.trim().isEmpty();
     }
 }
+ 
+ 
