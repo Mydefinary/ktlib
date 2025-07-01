@@ -2,10 +2,7 @@ package ktlib.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDate;
-<<<<<<< HEAD
-=======
 import java.time.ZoneId;
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -77,8 +74,6 @@ public class Book {
          });
         */
 
-<<<<<<< HEAD
-=======
         Book book = new Book();
 
         // Map event data to entity fields
@@ -93,7 +88,6 @@ public class Book {
         repository().save(book);
         RegistedBook registedBook = new RegistedBook(book);
         registedBook.publishAfterCommit();
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
     }
 
     //>>> Clean Arch / Port Method
