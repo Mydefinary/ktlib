@@ -1,38 +1,13 @@
 package ktlib.infra;
-<<<<<<< HEAD
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import javax.naming.NameParser;
-import javax.naming.NameParser;
-import javax.transaction.Transactional;
-import ktlib.config.kafka.KafkaProcessor;
-import ktlib.domain.*;
-=======
  
 import ktlib.config.kafka.KafkaProcessor;
 import ktlib.domain.*;
  
 import lombok.extern.slf4j.Slf4j;
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-
-//<<< Clean Arch / Inbound Adaptor
-@Service
-@Transactional
-public class PolicyHandler {
-
-    @Autowired
-    PublishRepository publishRepository;
-
-    @StreamListener(KafkaProcessor.INPUT)
-    public void whatever(@Payload String eventString) {}
-
-=======
  
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -54,26 +29,10 @@ public class PolicyHandler {
     }
  
  
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
     @StreamListener(
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='RequestedPublish'"
     )
-<<<<<<< HEAD
-    public void wheneverRequestedPublish_PreparePublish(
-        @Payload RequestedPublish requestedPublish
-    ) {
-        RequestedPublish event = requestedPublish;
-        System.out.println(
-            "\n\n##### listener PreparePublish : " + requestedPublish + "\n\n"
-        );
-
-        // Sample Logic //
-        Publish.preparePublish(event);
-    }
-}
-//>>> Clean Arch / Inbound Adaptor
-=======
     public void handleRequestedPublish(@Payload RequestedPublish event) {
         log.info("📩 RequestedPublish 이벤트 수신: manuscriptId={}, title={}",
                  event.getManuscriptId(), event.getTitle());
@@ -124,4 +83,5 @@ public class PolicyHandler {
         }
     }
 }
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
+ 
+ 

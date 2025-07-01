@@ -7,11 +7,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 2181:2181
-<<<<<<< HEAD
   kafka:
-=======
-  kafka:  
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
     image: confluentinc/cp-kafka:7.5.3
     container_name: my-kafka
     depends_on:
