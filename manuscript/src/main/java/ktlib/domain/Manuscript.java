@@ -37,6 +37,13 @@ public class Manuscript {
 
     private String authorNickname;
 
+    @Transient
+    private boolean publishRequested = false;
+
+    @Transient
+    private boolean contentUpdated = false;
+
+
     @PostPersist
     public void onPostPersist() {
         ResisteredText resisteredText = new ResisteredText(this);
@@ -45,12 +52,20 @@ public class Manuscript {
 
     @PostUpdate
     public void onPostUpdate() {
-        RequestedPublish requestedPublish = new RequestedPublish(this);
-        requestedPublish.publishAfterCommit();
+        if (publishRequested) {
+            RequestedPublish event = new RequestedPublish(this);
+            event.publishAfterCommit();
+            publishRequested = false; // 초기화
+        }
 
-        UpdatedText1 updatedText1 = new UpdatedText1(this);
-        updatedText1.publishAfterCommit();
+        if (contentUpdated) {
+            UpdatedText1 event = new UpdatedText1(this);
+            event.publishAfterCommit();
+            contentUpdated = false; // 초기화
+        }
     }
+
+
 
     public static ManuscriptRepository repository() {
         ManuscriptRepository manuscriptRepository = ManuscriptApplication.applicationContext.getBean(
