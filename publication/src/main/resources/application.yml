@@ -1,11 +1,19 @@
 server:
   port: 8080
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 spring:
   application:
     name: publication
 ---
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 spring:
   profiles: default
   jpa:
@@ -39,11 +47,19 @@ spring:
           destination: ktlib
 #>>> EDA / Topic Name
           contentType: application/json
+<<<<<<< HEAD
 
+=======
+        requestedPublish-out-0:
+          destination: ktlib
+          content-type: application/json
+ 
+>>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 logging:
   level:
     org.hibernate.type: trace
     org.springframework.cloud: debug
+<<<<<<< HEAD
 
 
 server:
@@ -51,6 +67,15 @@ server:
 
 ---
 
+=======
+ 
+ 
+server:
+  port: 8084
+ 
+---
+ 
+>>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
 spring:
   profiles: docker
   jpa:
@@ -79,6 +104,10 @@ spring:
           contentType: application/json
         event-out:
           destination: ktlib
+<<<<<<< HEAD
           contentType: application/json
 
 
+=======
+          contentType: application/json
+>>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442

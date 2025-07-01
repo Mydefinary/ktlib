@@ -43,4 +43,16 @@ secrets.yml
 .sts4-cache
 node_modules
 .dist/
+<<<<<<< HEAD
 .pem
+=======
+.pem
+# 환경 변수 파일 무시
+.env
+publication/.env
+*.log
+*.env
+*.env.*
+logs/
+*.log
+>>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
