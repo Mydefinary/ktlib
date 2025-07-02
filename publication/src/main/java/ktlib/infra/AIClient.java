@@ -24,9 +24,13 @@ public class AIClient {
 
     // 1. 줄거리 요약
     public String summarize(String content) {
-        String prompt = "Summarize the following story in three sentences or fewer. Story: " + content;
-        return callChatGPT(prompt);
-    }
+    String prompt = "The following is a manuscript that will be published as an ebook.\n" +
+            "Please summarize its core storyline in **no more than 2 to 3 concise and clear sentences** so that readers can quickly understand the content.\n" +
+            "Avoid unnecessary adjectives and focus only on the essential points.\n\n" +
+            "Manuscript:\n" + content;
+    return callChatGPT(prompt);
+}
+
 
     // 2. 장르 분류
     public String classifyGenre(String content) {
@@ -68,42 +72,43 @@ public class AIClient {
 
     // 4. 표지 이미지 생성
     public String generateCoverImage(String title, String content) {
-        try {
-            String prompt = String.format(
-                "Create a high-quality 3D-rendered image of a single hardcover book standing upright.\n" +
-                "The book is titled \"%s\".\n" +
-                "Its story is about: %s\n\n" +
-                "Design the front cover to visually reflect the core feeling or theme of the story. " +
-                "Use symbolic or abstract imagery that conveys the mood — such as hope, loneliness, growth, mystery, or wonder.\n" +
-                "The cover should use artistic and metaphorical visuals that hint at the genre and tone without using any text or characters.\n" +
-                "Keep the background simple and softly lit. Focus on making the book appear visually striking and emotionally resonant.",
-                title, content
-            );
+    try {
+        String prompt = String.format(
+            "Create a high-quality 3D-rendered image of a single hardcover book standing upright.\n" +
+            "The book is titled \"%s\".\n" +
+            "Its content is summarized as follows: %s\n\n" +
+            "Design the front cover to reflect the mood, message, and symbolic meaning of the story.\n" +
+            "Use metaphorical imagery to hint at the genre and theme, such as loneliness, love, growth, conflict, or mystery.\n" +
+            "The cover should not contain any text or characters.\n" +
+            "Use soft lighting and a simple background to highlight the book's emotional tone.\n" +
+            "Make the visual compelling and artistically expressive.",
+            title, content
+        );
+        Map<String, Object> body = Map.of(
+            "model", "dall-e-3",
+            "prompt", prompt,
+            "n", 1,
+            "size", "1024x1024",
+            "quality", "standard"
+        );
 
-            Map<String, Object> body = Map.of(
-                "model", "dall-e-3",
-                "prompt", prompt,
-                "n", 1,
-                "size", "1024x1024",
-                "quality", "standard"
-            );
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(apiKey);
-            headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
 
-            HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
+        ResponseEntity<String> response = restTemplate.postForEntity(IMAGE_URL, request, String.class);
+        JsonNode json = objectMapper.readTree(response.getBody());
 
-            ResponseEntity<String> response = restTemplate.postForEntity(IMAGE_URL, request, String.class);
-            JsonNode json = objectMapper.readTree(response.getBody());
+        return json.at("/data/0/url").asText();
 
-            return json.at("/data/0/url").asText();
-
-        } catch (Exception e) {
-            System.err.println("❌ 이미지 생성 실패: " + e.getMessage());
-            return null;
-        }
+    } catch (Exception e) {
+        System.err.println("❌ 이미지 생성 실패: " + e.getMessage());
+        return null;
     }
+    }
+
 
     // 내부 공통 GPT 호출
     private String callChatGPT(String prompt) {
