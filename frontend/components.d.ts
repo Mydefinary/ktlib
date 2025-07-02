@@ -7,14 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-<<<<<<< HEAD
-    BuyNow: typeof import('./src/@core/components/BuyNow.vue')['default']
-    CardStatisticsVertical: typeof import('./src/@core/components/CardStatisticsVertical.vue')['default']
-    ErrorHeader: typeof import('./src/@core/components/ErrorHeader.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
-    ThemeSwitcher: typeof import('./src/@core/components/ThemeSwitcher.vue')['default']
-=======
     Address: typeof import('./src/components/vo/Address.vue')['default']
     Author: typeof import('./src/components/Author.vue')['default']
     AuthorGrid: typeof import('./src/components/ui/AuthorGrid.vue')['default']
@@ -62,6 +54,5 @@ declare module '@vue/runtime-core' {
     User: typeof import('./src/components/User.vue')['default']
     UserGrid: typeof import('./src/components/ui/UserGrid.vue')['default']
     Weather: typeof import('./src/components/vo/Weather.vue')['default']
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
   }
 }

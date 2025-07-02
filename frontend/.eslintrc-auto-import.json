@@ -152,10 +152,7 @@
     "useEventListener": true,
     "useEventSource": true,
     "useEyeDropper": true,
-<<<<<<< HEAD
-=======
     "useFavicon": true,
->>>>>>> cc51f632aa39de85878eeed3e45ae4baeaf95442
     "useFetch": true,
     "useFileDialog": true,
     "useFileSystemAccess": true,
