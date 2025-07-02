@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: user
-          image: "username/user:latest"
+          image: "kt16project.azurecr.io/user:v3"
           ports:
             - containerPort: 8080
           readinessProbe:
