@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 //<<< Clean Arch / Inbound Adaptor
 
 @RestController
-// @RequestMapping(value="/authors")
+@RequestMapping(value="/authors")
 @Transactional
 public class AuthorController {
 
@@ -42,6 +42,14 @@ public class AuthorController {
         authorRepository.save(author);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/authors/register")
+    public ResponseEntity<?> registerAuthor(@RequestBody Author author) {
+    author.setStatus("Pending"); // 최초 상태는 Pending
+    Author savedAuthor = authorRepository.save(author);
+    return ResponseEntity.ok(savedAuthor);
+    }
+
 
 }
 //>>> Clean Arch / Inbound Adaptor

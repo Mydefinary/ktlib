@@ -33,6 +33,8 @@ public class User {
 
     private String carrier;
 
+    private String role; // 유횽 "USER"-독자, "ADMIN"-관리자
+
     @PostPersist
     public void onPostPersist() {
         RegisteredUser registeredUser = new RegisteredUser(this);

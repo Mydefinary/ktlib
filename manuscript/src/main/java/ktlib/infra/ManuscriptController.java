@@ -25,7 +25,7 @@ public class ManuscriptController {
     @Autowired
     ManuscriptRepository manuscriptRepository;
 
-    @PutMapping("/manuscripts/publish/{id}")
+    @PutMapping("/manuscripts/publish/{id}") 
     public ResponseEntity<?> requestPublish(@PathVariable Long id) {
         Manuscript manuscript = manuscriptRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Manuscript not found"));
