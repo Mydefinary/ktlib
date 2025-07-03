@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: publication
-          image: "username/publication:latest"
+          image: kt16project.azurecr.io/publication:0703
           ports:
             - containerPort: 8080
           env:
