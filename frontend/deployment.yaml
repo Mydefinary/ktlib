@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: kt16project.azurecr.io/frontend:v1
+          image: kt16project.azurecr.io/frontend:latest
           ports:
             - containerPort: 80
 
