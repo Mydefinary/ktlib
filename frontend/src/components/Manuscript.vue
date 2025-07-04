@@ -9,16 +9,7 @@
       dense
       class="mb-4"
     />
-
-    <!-- Author Nickname 입력 (일반 필드) -->
-    <v-text-field
-      label="Author Nickname"
-      v-model="value.authorNickname"
-      outlined
-      dense
-      class="mb-4"
-    />
-
+ 
     <!-- 제목 -->
     <v-text-field
       label="Title"
@@ -27,7 +18,7 @@
       dense
       class="mb-4"
     />
-
+ 
     <!-- 내용 -->
     <v-textarea
       label="Content"
@@ -38,7 +29,7 @@
       dense
       class="mb-4"
     />
-
+ 
     <!-- 저장 버튼 -->
     <v-row class="pt-4">
       <v-spacer></v-spacer>
@@ -51,10 +42,10 @@
     </v-row>
   </div>
 </template>
-
+ 
 <script>
 import BaseEntity from './base-ui/BaseEntity.vue'
-
+ 
 export default {
   name: 'Manuscript',
   mixins: [BaseEntity],
@@ -79,7 +70,7 @@ export default {
         this.value.createdDate = new Date().toISOString();
       }
       this.value.lastModified = new Date().toISOString();
-
+ 
       try {
         const result = await this.$options.mixins[0].methods.save.call(this);
         console.log('✅ 저장 완료:', result);
@@ -91,7 +82,7 @@ export default {
   }
 }
 </script>
-
+ 
 <style scoped>
 .scroll-wrapper {
   max-height: 80vh;
@@ -99,3 +90,5 @@ export default {
   padding: 24px;
 }
 </style>
+ 
+ 
