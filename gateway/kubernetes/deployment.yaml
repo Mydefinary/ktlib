@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: kt16project.azurecr.io/gateway:latest
+          image: kt16project.azurecr.io/gateway:07040509
           ports:
             - containerPort: 8080

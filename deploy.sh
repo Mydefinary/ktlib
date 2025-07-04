@@ -14,7 +14,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # 서비스 이름
-SERVICE=${1:-user}  # 기본값 publication
+SERVICE=${1:-periodsubscribe}  # 기본값 publication
 IMAGE_NAME="kt16project.azurecr.io/${SERVICE}"
 TAG=$(date +"%m%d%H%M")
 DEPLOYMENT_NAME=${SERVICE}
