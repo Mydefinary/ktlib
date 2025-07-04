@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: manuscript
-          image: username/manuscript:latest
+          image: kt16project.azurecr.io/manuscript:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
         - name: publication
-          image: username/publication:latest
+          image: kt16project.azurecr.io/publication:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -138,7 +138,7 @@ spec:
     spec:
       containers:
         - name: book
-          image: username/book:latest
+          image: kt16project.azurecr.io/book:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -178,7 +178,7 @@ spec:
     spec:
       containers:
         - name: point
-          image: username/point:latest
+          image: kt16project.azurecr.io/point:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -218,7 +218,7 @@ spec:
     spec:
       containers:
         - name: user
-          image: username/user:latest
+          image: kt16project.azurecr.io/user:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -258,7 +258,7 @@ spec:
     spec:
       containers:
         - name: subscribe
-          image: username/subscribe:latest
+          image: kt16project.azurecr.io/subscribe:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -298,7 +298,7 @@ spec:
     spec:
       containers:
         - name: periodsubscribe
-          image: username/periodsubscribe:latest
+          image: kt16project.azurecr.io/periodsubscribe:latest
           ports:
             - containerPort: 8080
           readinessProbe:
