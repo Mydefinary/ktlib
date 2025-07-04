@@ -12,6 +12,5 @@ import java.util.Optional;
 
 //<<< PoEAA / Repository
 @RepositoryRestResource(collectionResourceRel = "authors", path = "authors")
-public interface AuthorRepository extends JpaRepository<Author, Long> {
-    Optional<Author> findByEmail(String email); 
-}
+public interface AuthorRepository
+    extends PagingAndSortingRepository<Author, Long> {}

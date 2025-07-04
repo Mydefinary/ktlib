@@ -55,17 +55,6 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 
-		<!-- jwt인증 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-
 		<!-- kafka streams -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

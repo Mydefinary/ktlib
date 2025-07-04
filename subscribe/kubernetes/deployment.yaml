@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: subscribe
-          image: "username/subscribe:latest"
+          image: "kt16project.azurecr.io/subscribe:latest"
           ports:
             - containerPort: 8080
           readinessProbe:
