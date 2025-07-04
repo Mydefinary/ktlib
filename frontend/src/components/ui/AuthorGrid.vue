@@ -55,7 +55,7 @@
                         </tr>
                     </tbody>
                 </v-table>
-            </div>s
+            </div>
         </div>
         <v-col>
             <v-dialog

@@ -1,6 +1,6 @@
 <template>
   <div class="scroll-wrapper">
-    <!-- Author ID 입력 -->
+    <!-- Author ID 입력 (일반 필드) -->
     <v-text-field
       label="Author ID"
       v-model.number="value.authorId"
@@ -8,14 +8,12 @@
       outlined
       dense
       class="mb-4"
-      @blur="onAuthorIdBlur"
     />
 
-    <!-- 자동 표시되는 Author Nickname -->
+    <!-- Author Nickname 입력 (일반 필드) -->
     <v-text-field
       label="Author Nickname"
       v-model="value.authorNickname"
-      readonly
       outlined
       dense
       class="mb-4"
@@ -73,8 +71,7 @@ export default {
       createdDate: null,
       lastModified: null,
       status: 'DRAFT'
-    },
-    authorOptions: []
+    }
   }),
   watch: {
     modelValue: {
@@ -91,36 +88,7 @@ export default {
       deep: true
     }
   },
-  computed: {
-
-  },
-  created() {
-    this.fetchAuthors();
-  },
   methods: {
-    async fetchAuthors() {
-      try {
-        const response = await fetch('/authors');
-        const data = await response.json();
-        const authorsRaw = data._embedded?.authors || [];
-
-        this.authorOptions = authorsRaw.map(author => {
-          const id = Number(author._links.self.href.split('/').pop());
-          return {
-            authorId: id,
-            nickname: author.authorNickname || ''
-          };
-        });
-      } catch (error) {
-        console.error('❌ 작가 목록 불러오기 실패:', error);
-      }
-    },
-    onAuthorIdBlur() {
-      const matched = this.authorOptions.find(
-        a => Number(a.authorId) === Number(this.value.authorId)
-      );
-      this.value.authorNickname = matched ? matched.nickname : '';
-    },
     async save() {
       if (!this.value.createdDate) {
         this.value.createdDate = new Date().toISOString();

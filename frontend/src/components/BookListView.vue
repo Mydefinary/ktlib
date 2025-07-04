@@ -26,13 +26,24 @@
 
     <!-- ✅ 긴 내용 자르기 -->
     <template #item.content="{ item }">
-      {{ truncate(item.content, 10) }}
+      {{ truncate(item.content, 20) }}
     </template>
     <template #item.summary="{ item }">
       {{ truncate(item.summary, 50) }}
     </template>
     <template #item.genre="{ item }">
-      {{ truncate(item.summary, 20) }}
+      {{ truncate(item.genre, 20) }}
+    </template>
+
+    <!-- ✅ PDF 버튼 -->
+    <template #item.action="{ item }">
+      <v-btn
+        color="primary"
+        size="small"
+        @click="downloadPdf(item.bookId)"
+      >
+        PDF 보기
+      </v-btn>
     </template>
   </v-data-table>
 </template>
@@ -55,13 +66,14 @@ export default {
       { title: "Book ID", key: "bookId", sortable: true },
       { title: "표지", key: "coverUrl" },
       { title: "제목", key: "title" },
-      { title: "작가 닉네임", key: "authorNickname" },
+      { title: "작가필명", key: "authorNickname" },
       { title: "내용", key: "content" },
       { title: "장르", key: "genre" },
       { title: "요약", key: "summary" },
       { title: "열람료", key: "readCost" },
       { title: "출간일", key: "publicationDate" },
       { title: "구독자 수", key: "numberOfSubscribers" },
+      { title: "PDF", key: "action", sortable: false },  // ✅ PDF 버튼 헤더 추가
     ]);
 
     const items = ref([]);
@@ -99,14 +111,29 @@ export default {
       return text.length > len ? text.slice(0, len) + '...' : text;
     };
 
+    // ✅ PDF 다운로드 함수
+    const downloadPdf = async (bookId) => {
+      try {
+        const res = await axios.get(`/books/${bookId}/pdf`);
+        const pdfUrl = res.data;
+
+        // 새 창으로 열기 또는 자동 다운로드
+        window.open(pdfUrl, '_blank');
+      } catch (err) {
+        console.error('❌ PDF 생성 실패:', err);
+        alert('PDF 생성 실패');
+      }
+    };
+
     return {
       headers,
       items,
       formatDate,
-      truncate
+      truncate,
+      downloadPdf,
     };
   }
-}
+};
 </script>
 
 <style scoped>

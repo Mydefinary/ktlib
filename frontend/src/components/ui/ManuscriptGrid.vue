@@ -88,11 +88,9 @@
           <v-icon color="white" small @click="closeDialog()">mdi-close</v-icon>
         </v-toolbar>
 
-        <v-card-text>
+        <v-card-text class="scroll-wrapper">
           <String label="Title" v-model="selectedRow.title" :editMode="true" class="mb-3" />
-          <String label="Content" v-model="selectedRow.content" :editMode="true" class="mb-3" />
-          <Number label="Author ID" v-model.number="selectedRow.authorId" :editMode="true" class="mb-3" />
-          <String label="Author Nickname" v-model="selectedRow.authorNickname" :editMode="true" class="mb-3" />
+          <v-textarea label="Content" v-model="selectedRow.content" rows="10" outlined dense class="mb-3" />
           <Date label="Created Date" v-model="selectedRow.createdDate" :editMode="false" class="mb-3" />
           <Date label="Last Modified" v-model="selectedRow.lastModified" :editMode="false" class="mb-3" />
 
@@ -131,7 +129,7 @@ export default {
     async publishbook() {
       if (!this.selectedRow) return;
       try {
-        if (this.selectedRow.status == 'RequestedPublish') {
+        if (this.selectedRow.status === 'RequestedPublish') {
           throw '이미 처리된 요청입니다';
         }
         const id = this.selectedRow._links.self.href.split('/').pop();
@@ -146,6 +144,7 @@ export default {
     async saveEdit() {
       try {
         this.selectedRow.lastModified = new Date().toISOString();
+        this.selectedRow.status = 'MODIFIED';
         await this.repository.save(this.selectedRow, false);
         this.success('수정 완료');
         this.editDialog = false;
@@ -175,5 +174,10 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.scroll-wrapper {
+  max-height: 75vh;
+  overflow-y: auto;
+  padding: 12px;
 }
 </style>
