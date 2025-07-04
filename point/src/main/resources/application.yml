@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: point
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 ---
 
 spring:

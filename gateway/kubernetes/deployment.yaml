@@ -14,8 +14,9 @@ spec:
       labels:
         app: gateway
     spec:
+      serviceAccountName: gateway-sa  # <-- 이 줄을 추가!
       containers:
         - name: gateway
-          image: kt16project.azurecr.io/gateway:v3
+          image: kt16project.azurecr.io/gateway:0704v5
           ports:
             - containerPort: 8080

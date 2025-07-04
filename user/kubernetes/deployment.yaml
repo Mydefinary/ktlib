@@ -16,9 +16,12 @@ spec:
     spec:
       containers:
         - name: user
-          image: "kt16project.azurecr.io/user:v3"
+          image: "kt16project.azurecr.io/user:0704v1"
           ports:
             - containerPort: 8080
+          env: # <--- 이 부분을 확인하고 추가하세요!
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker"
           readinessProbe:
             httpGet:
               path: '/actuator/health'

@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: periodsubscribe
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 ---
 
 spring:

@@ -5,18 +5,15 @@ spring:
   application:
     name: user
 
----
-
-spring:
-  security:
-    user:
-      name: user
-      password: password
 jwt:
   secret: your_service_jwt_secret_key
   expiration: 86400000 # 1 day in milliseconds
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 ---
 
@@ -44,21 +41,11 @@ spring:
       bindings:
         event-in:
           group: user
-#<<< EDA / Topic Name
           destination: ktlib
-#>>> EDA / Topic Name
           contentType: application/json
         event-out:
-#<<< EDA / Topic Name
           destination: ktlib
-#>>> EDA / Topic Name
           contentType: application/json
-
-logging:
-  level:
-    org.hibernate.type: trace
-    org.springframework.cloud: debug
-
 
 server:
   port: 8087
@@ -95,7 +82,12 @@ spring:
           destination: ktlib
           contentType: application/json
 
-
 jwt:
   secret: your_service_jwt_secret_key
   expiration: 86400000 # 1 day in milliseconds
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -9,6 +9,12 @@ jwt:
   secret: your_service_jwt_secret_key
   expiration: 86400000 # 1 day in milliseconds
 
+management:
+endpoints:
+  web:
+    exposure:
+      include: "*"      
+
 ---
 
 spring:
@@ -44,6 +50,18 @@ spring:
           destination: ktlib
 #>>> EDA / Topic Name
           contentType: application/json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+# Spring Security 없이 actuator를 열어야 한다면:
+management.security.enabled: false
 
 logging:
   level:
@@ -92,3 +110,15 @@ spring:
           contentType: application/json
 
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+# Spring Security 없이 actuator를 열어야 한다면:
+management.security.enabled: false

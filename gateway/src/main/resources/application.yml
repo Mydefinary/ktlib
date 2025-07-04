@@ -1,116 +1,83 @@
-server:
-  port: 8088
-
----
-
-spring:
-  profiles: default
-  cloud:
-    gateway:
-#<<< API Gateway / Routes
-      routes:
-        - id: author
-          uri: http://localhost:8082
-          predicates:
-            - Path=/authors/**, /authorLists/**
-        - id: manuscript
-          uri: http://localhost:8083
-          predicates:
-            - Path=/manuscripts/**, /manuscriptLists/**
-        - id: publication
-          uri: http://localhost:8084
-          predicates:
-            - Path=/publishes/**, 
-        - id: book
-          uri: http://localhost:8085
-          predicates:
-            - Path=/books/**, /bookLists/**
-        - id: point
-          uri: http://localhost:8086
-          predicates:
-            - Path=/points/**, /pointsLists/**
-        - id: user
-          uri: http://localhost:8087
-          predicates:
-            - Path=/users/**, 
-        - id: subscribe
-          uri: http://localhost:8088
-          predicates:
-            - Path=/subscribeSus/**, /subscribeLists/**
-        - id: periodsubscribe
-          uri: http://localhost:8089
-          predicates:
-            - Path=/periodSubscribes/**, 
-        - id: frontend
-          uri: http://localhost:8080
-          predicates:
-            - Path=/**
-#>>> API Gateway / Routes
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins:
-              - "*"
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
+# spring:
+#   profiles: docker
+#   cloud:
+#     kubernetes:
+#       discovery:
+#         enabled: true # 서비스 디스커버리 활성화
+#     gateway:
+#       discovery:
+#         locator:
+#           enabled: true
+#           lower-case-service-id: true
+#       routes:
+#         - id: user
+#           uri: lb://user # lb:// URI 사용
+#           predicates:
+#             - Path=/auth/**, /users/**
+#         - id: author
+#           uri: lb://author
+#           predicates:
+#             - Path=/authors/**
+#         # --- (다른 모든 서비스들의 lb:// 경로) ---
+#         - id: frontend
+#           uri: lb://frontend
+#           predicates:
+#             - Path=/**
 
 
----
+# istio routing 버젼
+# server:
+#   port: 8080
 
+# spring:
+#   application:
+#     name: gateway
+
+  
+    
 spring:
   profiles: docker
   cloud:
     gateway:
       routes:
-        - id: author
-          uri: http://author:8080
-          predicates:
-            - Path=/authors/**, 
-        - id: manuscript
-          uri: http://manuscript:8080
-          predicates:
-            - Path=/manuscripts/**, 
-        - id: publication
-          uri: http://publication:8080
-          predicates:
-            - Path=/publishes/**, 
-        - id: book
-          uri: http://book:8080
-          predicates:
-            - Path=/books/**, 
-        - id: point
-          uri: http://point:8080
-          predicates:
-            - Path=/points/**, 
+        # User 서비스
         - id: user
           uri: http://user:8080
           predicates:
-            - Path=/users/**, 
+            - Path=/auth/**, /users/**
+
+        # 다른 마이크로서비스 경로들
+        - id: author
+          uri: http://author:8080
+          predicates:
+            - Path=/auth/**, /authors/**
+        - id: manuscript
+          uri: http://manuscript:8080
+          predicates:
+            - Path=/manuscripts/**
+        - id: publication
+          uri: http://publication:8080
+          predicates:
+            - Path=/publishes/**
+        - id: book
+          uri: http://book:8080
+          predicates:
+            - Path=/books/**
+        - id: point
+          uri: http://point:8080
+          predicates:
+            - Path=/points/**
         - id: subscribe
           uri: http://subscribe:8080
           predicates:
-            - Path=/subscribeSus/**, 
+            - Path=/subscribeSus/**
         - id: periodsubscribe
           uri: http://periodsubscribe:8080
           predicates:
-            - Path=/periodSubscribes/**, 
+            - Path=/periodSubscribes/**
+
+        # Frontend 서비스 (가장 마지막)
         - id: frontend
           uri: http://frontend:8080
           predicates:
             - Path=/**
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins:
-              - "*"
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
-
-server:
-  port: 8080

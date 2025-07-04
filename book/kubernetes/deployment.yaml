@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: book
-          image: "username/book:latest"
+          image: kt16project.azurecr.io/book:0704
           ports:
             - containerPort: 8080
           env:

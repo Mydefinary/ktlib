@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: user
+  name: frontend
   labels:
-    app: user
+    app: frontend
 spec:
   selector:
-    app: user
+    app: frontend
   ports:
   - protocol: TCP
     port: 8080
-    targetPort: 8080
-  # istio routing code
+    targetPort: 80
+  # istio router 코
   # ports:
   #   - name: http
   #     protocol: TCP
   #     port: 8080
-  #     targetPort: 8080
+  #     targetPort: 80

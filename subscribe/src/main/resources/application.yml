@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: subscribe
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 ---
 
 spring:
