@@ -73,21 +73,6 @@ export default {
       status: 'DRAFT'
     }
   }),
-  watch: {
-    modelValue: {
-      handler(val) {
-        this.value = { ...val }
-      },
-      immediate: true,
-      deep: true
-    },
-    value: {
-      handler(val) {
-        this.$emit('update:modelValue', val)
-      },
-      deep: true
-    }
-  },
   methods: {
     async save() {
       if (!this.value.createdDate) {
