@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: author
-          image: usgMetaAcr.azurecr.io/author:latest
+          image: kt16project.azurecr.io/author:latest
           ports:
             - containerPort: 8080
           readinessProbe:
